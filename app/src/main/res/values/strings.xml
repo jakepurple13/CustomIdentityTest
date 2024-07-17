@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CustomIdentityTest</string>
+    <string name="account_name_type">Gabb ID Account</string>
+    <string name="key1_action">title</string>
+    <string name="key1_summary">summary</string>
+    <string name="title_fmt">super title</string>
+</resources>
