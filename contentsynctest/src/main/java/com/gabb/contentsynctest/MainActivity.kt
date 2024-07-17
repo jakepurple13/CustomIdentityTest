@@ -32,6 +32,11 @@ class MainActivity : ComponentActivity() {
                     "com.gabb.contentsynctest.provider",
                     1
                 )
+                ContentResolver.setIsSyncable(
+                    it,
+                    "com.gabb.contentsynctest.two.provider",
+                    1
+                )
             }
             .let { accounts.addAll(it) }
         setContent {

@@ -43,6 +43,29 @@
             android:authorities="com.gabb.contentsynctest.provider"
             android:exported="false"
             android:syncable="true" />
+
+
+        <service
+            android:name=".CustomSyncService2"
+            android:exported="false"
+            android:label="@string/asdf"
+            android:process=":sync">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_adapter_two" />
+        </service>
+
+        <!-- The authorities MUST be the same as the sync adapter contentAuthority -->
+        <!-- The label parameter will change the name of the sync adapter in the settings -->
+        <provider
+            android:name=".CustomSyncProvider2"
+            android:authorities="com.gabb.contentsynctest.two.provider"
+            android:exported="false"
+            android:label="@string/asdf"
+            android:syncable="true" />
     </application>
 
 </manifest>

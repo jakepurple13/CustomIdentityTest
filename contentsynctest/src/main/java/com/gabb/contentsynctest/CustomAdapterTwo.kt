@@ -14,7 +14,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
 
-class CustomSyncAdapter(
+class CustomSyncAdapter2(
     context: Context?,
     autoInitialize: Boolean,
 ) : AbstractThreadedSyncAdapter(context, autoInitialize) {
@@ -25,11 +25,11 @@ class CustomSyncAdapter(
         provider: ContentProviderClient?,
         syncResult: SyncResult?,
     ) {
-        println("CustomSyncAdapter.onPerformSync")
+        println("CustomSyncAdapter2.onPerformSync")
     }
 }
 
-class CustomSyncProvider : ContentProvider() {
+class CustomSyncProvider2 : ContentProvider() {
     override fun onCreate(): Boolean {
         return true
     }
@@ -66,11 +66,11 @@ class CustomSyncProvider : ContentProvider() {
     }
 }
 
-class CustomSyncService : Service() {
+class CustomSyncService2 : Service() {
     override fun onCreate() {
         super.onCreate()
         synchronized(sSyncAdapterLock) {
-            sSyncAdapter = CustomSyncAdapter(applicationContext, true)
+            sSyncAdapter = CustomSyncAdapter2(applicationContext, true)
         }
     }
 
@@ -79,7 +79,7 @@ class CustomSyncService : Service() {
     }
 
     companion object {
-        private var sSyncAdapter: CustomSyncAdapter? = null
+        private var sSyncAdapter: CustomSyncAdapter2? = null
         private val sSyncAdapterLock = Any()
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="com.gabb.account.type"
+    android:allowParallelSyncs="false"
+    android:contentAuthority="com.gabb.contentsynctest.two.provider"
+    android:isAlwaysSyncable="true"
+    android:supportsUploading="true"
+    android:userVisible="true" />
+
+    <!--The contentAuthority MUST be the same as the provider authorities-->
