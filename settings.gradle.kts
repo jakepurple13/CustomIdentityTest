@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CustomIdentityTest"
 include(":app")
- 
+include(":contentsynctest")
