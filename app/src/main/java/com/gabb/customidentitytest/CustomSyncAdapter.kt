@@ -70,7 +70,9 @@ class CustomSyncProvider : ContentProvider() {
 class CustomSyncService : Service() {
     override fun onCreate() {
         super.onCreate()
-        sSyncAdapter = CustomSyncAdapter(applicationContext, false)
+        synchronized(sSyncAdapterLock) {
+            sSyncAdapter = CustomSyncAdapter(applicationContext, true)
+        }
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -79,5 +81,6 @@ class CustomSyncService : Service() {
 
     companion object {
         private var sSyncAdapter: CustomSyncAdapter? = null
+        private val sSyncAdapterLock = Any()
     }
 }

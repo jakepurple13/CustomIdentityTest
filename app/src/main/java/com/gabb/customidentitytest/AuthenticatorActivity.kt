@@ -2,14 +2,12 @@ package com.gabb.customidentitytest
 
 import android.accounts.AbstractAccountAuthenticator
 import android.accounts.Account
-import android.accounts.AccountAuthenticatorActivity
 import android.accounts.AccountAuthenticatorResponse
 import android.accounts.AccountManager
 import android.accounts.NetworkErrorException
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
-import android.app.Activity
 import android.app.Service
 import android.content.ContentResolver
 import android.content.Context
@@ -48,7 +46,6 @@ class AccountAuthenticator(
         intent.putExtra(LoginActivity.ARG_ACCOUNT_TYPE, accountType)
         intent.putExtra(LoginActivity.ARG_AUTH_TOKEN_TYPE, authTokenType)
         intent.putExtra(LoginActivity.ARG_IS_ADDING_NEW_ACCOUNT, true)
-
 
         // return our AccountAuthenticatorActivity
         reply.putParcelable(AccountManager.KEY_INTENT, intent)

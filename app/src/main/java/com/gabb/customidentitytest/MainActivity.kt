@@ -1,7 +1,5 @@
 package com.gabb.customidentitytest
 
-import android.R.id.text1
-import android.R.id.text2
 import android.accounts.Account
 import android.accounts.AccountManager
 import android.accounts.OperationCanceledException
@@ -24,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.gabb.customidentitytest.AccountUtils.getAccount
 import com.gabb.customidentitytest.ui.theme.CustomIdentityTestTheme
+import kotlin.time.Duration.Companion.hours
 
 
 class MainActivity : ComponentActivity() {
@@ -71,11 +70,27 @@ class MainActivity : ComponentActivity() {
                         }
 
                         ContentResolver.setIsSyncable(account, "com.gabb.customidentitytest", 1)
-
+                        ContentResolver.setSyncAutomatically(
+                            account,
+                            "com.gabb.customidentitytest",
+                            true
+                        )
+                        ContentResolver.addPeriodicSync(
+                            account,
+                            "com.gabb.customidentitytest",
+                            Bundle.EMPTY,
+                            12.hours.inWholeSeconds // in seconds
+                        )
+                        //TODO: SYNC ADAPTER FOR CALENDAR LINKS UP WITH THIS!
+                        /*ContentResolver.requestSync(
+                            account,
+                            "com.gabb.customidentitytest",
+                            Bundle.EMPTY
+                        )*/
                         accountManager.setUserData(account, "asdf", "Hello there!")
 
                         val randomValue = accountManager.getUserData(account, "asdf")
-                        textToShow.add("Random value: adsf: $randomValue")
+                        textToShow.add("Random value: asdf: $randomValue")
                     }
                 } catch (e: OperationCanceledException) {
                     // If signup was cancelled, force activity termination
