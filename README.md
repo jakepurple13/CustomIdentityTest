@@ -9,3 +9,4 @@ https://developer.android.com/reference/android/accounts/AccountAuthenticatorAct
 https://github.com/SamuGG/android-account-manager-example/tree/master
 https://developer.android.com/identity/id-auth/custom_auth#ExtendThatThing
 https://github.com/codepath/android_guides/wiki/Server-Synchronization-(SyncAdapter)
+https://github.com/android/identity-samples/tree/main

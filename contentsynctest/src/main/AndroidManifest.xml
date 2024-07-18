@@ -3,7 +3,6 @@
 
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
@@ -59,6 +58,7 @@
 
         <!-- The authorities MUST be the same as the sync adapter contentAuthority -->
         <!-- The label parameter will change the name of the sync adapter in the settings -->
+        <!-- MAYBE we can lose the sync adapter and use work manager instead? -->
         <provider
             android:name=".CustomSyncProvider2"
             android:authorities="com.gabb.contentsynctest.two.provider"

@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    namespace = "com.gabb.customidentitytest"
+    namespace = "com.gabb.credentialmanagertest"
     compileSdk = 35
     compileSdkPreview = "VanillaIceCream"
 
     defaultConfig {
-        applicationId = "com.gabb.customidentitytest"
+        applicationId = "com.gabb.credentialmanagertest"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -58,4 +58,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.credentials)
+    implementation(libs.androidx.biometric)
 }

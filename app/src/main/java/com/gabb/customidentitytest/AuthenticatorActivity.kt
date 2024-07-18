@@ -17,12 +17,19 @@ import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
 import androidx.activity.ComponentActivity
+import androidx.credentials.CreatePasswordRequest
+import androidx.credentials.CredentialManager
+import androidx.credentials.exceptions.CreateCredentialCancellationException
+import androidx.credentials.exceptions.CreateCredentialException
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Collections
@@ -444,6 +451,16 @@ class LoginActivity : CustomAccountAuthenticatorActivity() {
 
             ContentResolver.setIsSyncable(account, "com.gabb.customidentitytest", 1)
 
+            lifecycleScope.launch {
+                runCatching {
+                    CredentialManager.create(this@LoginActivity).saveCredential(
+                        this@LoginActivity,
+                        accountName!!,
+                        accountPassword!!
+                    )
+                }.onFailure { it.printStackTrace() }
+            }
+
             setAccountAuthenticatorResult(intent.extras)
             setResult(RESULT_OK, intent)
 
@@ -520,5 +537,21 @@ open class CustomAccountAuthenticatorActivity : ComponentActivity() {
             mAccountAuthenticatorResponse = null
         }
         super.finish()
+    }
+}
+
+suspend fun CredentialManager.saveCredential(context: Context, username: String, password: String) {
+    try {
+        //Ask the user for permission to add the credentials to their store
+        createCredential(
+            context = context,
+            request = CreatePasswordRequest(username, password),
+        )
+        Log.v("CredentialTest", "Credentials successfully added")
+    } catch (e: CreateCredentialCancellationException) {
+        //do nothing, the user chose not to save the credential
+        Log.v("CredentialTest", "User cancelled the save")
+    } catch (e: CreateCredentialException) {
+        Log.v("CredentialTest", "Credential save error", e)
     }
 }
